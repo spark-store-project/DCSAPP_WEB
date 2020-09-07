@@ -30,6 +30,13 @@
         <button @click="officialwebsite" class="bt-feedback">商店官网</button>
         <br>
         <button @click="GiteeFeedBack" class="bt-feedback">反馈中心</button>
+<<<<<<< HEAD
+=======
+        <br>
+        <button @click="Contri" class="bt-feedback">参与贡献</button>
+        <br>
+        <button @click="Donate" class="bt-feedback">随喜捐赠</button>
+>>>>>>> 0b9aa4fcac32abd4e2f0c4c8a390ad15f9158ece
         <br>
       </div>
     </center>
@@ -55,6 +62,12 @@
       },
       GiteeFeedBack: function () {
         window.open("https://gitee.com/deepin-community-store/feedback", "_self", "")
+      },
+      Contri: function () {
+        window.open("https://gitee.com/deepin-community-store", "_self", "")
+      },
+      Donate: function () {
+        window.open("https://spark.deepinos.org.cn/", "_self", "")
       },
       Search: function () {
         this.$router.push({name: "Search"})
