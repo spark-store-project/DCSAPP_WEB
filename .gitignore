@@ -11,3 +11,6 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+
+#dist是编译好的内容, 直接忽略了?
+dist/
