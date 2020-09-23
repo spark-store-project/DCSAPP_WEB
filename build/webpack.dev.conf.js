@@ -70,6 +70,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 
 module.exports = new Promise((resolve, reject) => {
   portfinder.basePort = process.env.PORT || config.dev.port
+
   portfinder.getPort((err, port) => {
     if (err) {
       reject(err)
@@ -79,10 +80,26 @@ module.exports = new Promise((resolve, reject) => {
       // add port to devServer config
       devWebpackConfig.devServer.port = port
 
+      let baseUrl = `http://${devWebpackConfig.devServer.host}:${port}`;
+
       // Add FriendlyErrorsPlugin
       devWebpackConfig.plugins.push(new FriendlyErrorsPlugin({
         compilationSuccessInfo: {
-          messages: [`Your application is running here: http://${devWebpackConfig.devServer.host}:${port}`],
+          messages: [`Your application is running here: ${baseUrl}`].concat([
+            `主页的网址为 ${baseUrl}/#/ DARKMOD ${baseUrl}/#/dark`,
+            `编程开发类的网址是 ${baseUrl}/#/programming DARKMOD ${baseUrl}/#/darkprogramming`,
+            `主题美化类的网址是 ${baseUrl}/#/themes DARKMOD ${baseUrl}/#/darkthemes`,
+            `音乐欣赏类的网址是 ${baseUrl}/#/musicandsound DARKMOD ${baseUrl}/#/darkmusicandsound`,
+            `游戏娱乐类的网址是 ${baseUrl}/#/games DARKMOD ${baseUrl}/#/darkgames`,
+            `作图/看图类的网址是 ${baseUrl}/#/photos DARKMOD ${baseUrl}/#/darkphotos`,
+            `社交软件类的网址是 ${baseUrl}/#/relations DARKMOD ${baseUrl}/#/darkrelations`,
+            `实用工具类的网址是 ${baseUrl}/#/tools DARKMOD ${baseUrl}/#/darktools`,
+            `视频观看类的网址是 ${baseUrl}/#/videos DARKMOD ${baseUrl}/#/darkvideos`,
+            `其他应用类的网址是 ${baseUrl}/#/others DARKMOD ${baseUrl}/#/darkothers`,
+            `网络应用类的网址是 ${baseUrl}/#/network DARKMOD ${baseUrl}/#/darknetwork`,
+            `办公学习类的网址是 ${baseUrl}/#/office DARKMOD ${baseUrl}/#/darkoffice`,
+            `阅读写作类的网址是 ${baseUrl}/#/reading DARKMOD ${baseUrl}/#/darkreading`,
+            ]),
         },
         onErrors: config.dev.notifyOnErrors
         ? utils.createNotifierCallback()
