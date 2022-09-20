@@ -2,7 +2,7 @@ version: '1.0'
 name: pipeline-tag-20220917
 displayName: pipeline-tag
 triggers:
-  trigger: auto
+  trigger: maunal
   push:
     tags:
       prefix:
