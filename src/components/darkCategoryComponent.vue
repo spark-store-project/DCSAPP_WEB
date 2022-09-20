@@ -58,8 +58,8 @@ export default {
     methods: {
         getUrl(){
             if (location.host == 'localhost:8080' || location.host == '127.0.0.1:8080'){
-                this.source = 'https://d.store.deepinos.org.cn/';
-                this.imgSource = 'https://d.store.deepinos.org.cn/';
+                this.source = 'http://localhost:8080/';
+                this.imgSource = 'http://localhost:8080/';
             }
         },
         getInfo() {
