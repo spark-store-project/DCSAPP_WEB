@@ -73,7 +73,6 @@ a {
   float: right;
   height: 100%;
   width: 100%;
-  background: white;
   position: relative;
 }
 /*

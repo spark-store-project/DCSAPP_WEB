@@ -4,11 +4,7 @@
     <!--    暂未实现-->
     <br />
     <br />
-    <div>
-      <input class="search-input" v-model="searchInput" placeholder="搜索您想要的应用" />
-      <button class="search-button" @click="search">搜索</button>
-    </div>
-    <div class="search_main">
+    <center>
       <div class="list" v-if="isShow">
         <!--        单个应用模块-->
         <div class="item" v-for="item in list" :key="item.id" @click="GotoJson(item.icon)">
@@ -28,11 +24,9 @@
           <img :src="item.icon" alt="icon" class="icon-bg" />
         </div>
       </div>
-      <div class="noContent" v-else>空空如也</div>
-    </div>
-
-
+    </center>
   </div>
+
 </template>
 
 <script>
@@ -49,13 +43,6 @@ export default {
     };
   },
   methods: {
-    async search() {
-      console.log(this.searchInput);
-      let res = await $_getResult({ keyword: this.searchInput })
-      this.list = res.data
-      this.isShow = true
-      console.log('res', this.list);
-    },
     GotoJson(icon) {
       let appUrl = icon.replace('icon.png', 'app.json')
       console.log(appUrl);
@@ -70,10 +57,33 @@ export default {
         ""
       );
     },
+    async Search() {
+      console.log(this.$route.query.keywords);
+      if (this.$route.query.keywords) {
+        let res = await $_getResult({ keyword: this.$route.query.keywords })
+        this.list = res.data
+        this.isShow = true
+      }
+    }
   },
-  mounted() {
+  async mounted() {
+    this.Search();
+  },
+  beforeCreate() {
+    document.body.className = 'light-body';
+  },
+  // 监听,当路由发生变化的时候执行
+  watch: {
+    $route: {
+      handler: function (val, oldVal) {
+        console.log(val);
+        this.Search();
+      },
+      // 深度观察监听
+      deep: true
+    },
+  },
 
-  },
 
 
 };
@@ -83,44 +93,3 @@ export default {
 @import "../../static/style.css";
 </style>
 
-<style scoped>
-.search-input {
-  height: 40px;
-  width: 40%;
-  text-align: center;
-  font-size: 20px;
-  transition: all 0.3s;
-  border: solid 2px darkgray;
-  border-radius: 10px 0 0 10px;
-  position: relative;
-  top: -2px;
-}
-
-.search-input:hover {
-  border: solid 2px black;
-}
-
-.search-button {
-  border-radius: 0 10px 10px 0;
-  height: 46px;
-  width: 100px;
-  margin: 0;
-  border: solid 2px darkgray;
-  padding: 0;
-  position: relative;
-  /*top:2px;*/
-  left: -7px;
-  transition: all 0.3s;
-  font-size: 20px;
-}
-
-.search-button:hover {
-  border: solid 2px black;
-}
-
-.noContent {
-  height: 200px;
-  font-size: large;
-  margin-top: 50px;
-}
-</style>
