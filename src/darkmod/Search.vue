@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <br />
-    <br />
+    <!-- <br />
+    <br /> -->
     <center>
       <div class="list" v-if="isShow">
         <!--        单个应用模块-->
@@ -23,6 +23,11 @@
         </div>
       </div>
     </center>
+    <center>
+      <div class="notice" v-if="isEmpty">
+        <h1 class="title">暂时没有找到相关应用 :)</h1>
+      </div>
+    </center>
   </div>
 
 </template>
@@ -36,6 +41,7 @@ export default {
     return {
       list: [],
       isShow: false,//判断是否有搜索，没有不创建app列表
+      isEmpty: false,
       searchInput: "",
       downloadContent: "DOWNLOAD"
     };
@@ -60,7 +66,16 @@ export default {
       if (this.$route.query.keywords) {
         let res = await $_getResult({ keyword: this.$route.query.keywords })
         this.list = res.data
-        this.isShow = true
+        this.result = this.list.length
+        console.log(this.result)
+        if(this.result == 0){
+          this.isEmpty = true
+          this.isShow = false
+        }
+        else{
+          this.isEmpty = false
+          this.isShow = true
+        } 
       }
     }
   },
