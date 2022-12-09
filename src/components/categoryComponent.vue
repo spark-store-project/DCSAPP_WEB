@@ -1,7 +1,7 @@
 <template>
     <div class="app">
-        <br />
-        <br />
+        <!-- <br />
+        <br /> -->
         <center>
             <div class="list">
                 <!--        单个应用模块-->
