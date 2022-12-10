@@ -5,10 +5,10 @@
         <center>
             <div class="list">
                 <!--        单个应用模块-->
-                <div class="item" v-for="item in list" :key="item.tip" @click="GotoJson(item.Pkgname)">
+                <div class="item" v-for="item in list" :key="item.tip" @click="GotoJson(ReplaceUrl(item.Pkgname))">
                     <span class="show">
                         <!--            应用icon-->
-                        <img :src="`${imgSource}/store/${category}/${item.Pkgname}/icon.png`" alt="icon"
+                        <img :src="ReplaceUrl(`${imgSource}/store/${category}/${item.Pkgname}/icon.png`)" alt="icon"
                             class="icon-m" />
                         <span class="app-title">
                             <!--              应用名-->
@@ -20,7 +20,7 @@
                             </div>
                         </span>
                     </span>
-                    <img :src="`${imgSource}/store/${category}/${item.Pkgname}/icon.png`" alt="icon" class="icon-bg" />
+                    <img :src="ReplaceUrl(`${imgSource}/store/${category}/${item.Pkgname}/icon.png`)" alt="icon" class="icon-bg" />
                 </div>
             </div>
         </center>
@@ -72,6 +72,9 @@ export default {
                 "_self",
                 ""
             );
+        },
+        ReplaceUrl(icon) {
+            return icon.replace(/\+/g,'%2B')
         },
     },
     mounted() {
