@@ -5,10 +5,10 @@
     <center>
       <div class="list" v-if="isShow">
         <!--        单个应用模块-->
-        <div class="item" v-for="item in list" :key="item.id" @click="GotoJson(item.icon)">
+        <div class="item" v-for="item in list" :key="item.id" @click="GotoJson(ReplaceUrl(item.icon))">
           <span class="show">
             <!--            应用icon-->
-            <img :src="item.icon" alt="icon" class="icon-m" />
+            <img :src="ReplaceUrl(item.icon)" alt="icon" class="icon-m" />
             <span class="app-title">
               <!--              应用名-->
               <div>
@@ -19,7 +19,7 @@
               </div>
             </span>
           </span>
-          <img :src="item.icon" alt="icon" class="icon-bg" />
+          <img :src="ReplaceUrl(item.icon)" alt="icon" class="icon-bg" />
         </div>
       </div>
     </center>
@@ -60,6 +60,9 @@ export default {
         "_self",
         ""
       );
+    },
+    ReplaceUrl(icon) {
+      return icon.replace(/\+/g,'%2B')
     },
     async Search() {
       console.log(this.$route.query.keywords);
