@@ -37,6 +37,22 @@ body {
   margin: 0;
   border: 0;
 }
+
+/*滚动条样式*/
+::-webkit-scrollbar {
+  transition: all 1000ms;
+  width: 10px;
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: transparent;
+}
+
+:hover::-webkit-scrollbar-thumb {
+  background-color: #66CCFF;
+  border-radius: 6px;
+}
+
 .dark-body
 {
   background-color: #252525;
