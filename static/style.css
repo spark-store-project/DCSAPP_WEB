@@ -5,19 +5,10 @@ html,body{
   -webkit-user-select:none ;
 }
 
-#app {
-  /* height: 200px; */
-  width: 100%;
-  overflow: hidden;
-  /* overflow-y: scroll; */
-  border: transparent;
-  /*font-family: "Franklin Gothic Medium";*/
-  color:#414D68;
-}
 ::selection{
   background: #d2f0ff;
 }
-.app {
+.light-body .app {
   /* height: 200px; */
   width: 100%;
   overflow: hidden;
@@ -28,12 +19,100 @@ html,body{
   margin: 0 auto;
   background: transparent;
 }
-.none-more{
+.dark-body .app {
+  /* height: 200px; */
+  width: 100%;
+  overflow: hidden;
+  /* border: transparent; */
+  padding-bottom: 50px;
+  padding-left: 10px;
+  /*padding: 90%;*/
+  margin: 0 auto;
+  background: #252525;
+}
+.dark-body .more-info {
+  color: #d0d0d0;
+  font-weight: lighter;
+}
+.dark-body .title{
+  color: #bababa;
+}
+.dark-body .bt-feedback {
+  width: 300px;
+  padding: 10px;
+  margin: 15px;
+  /*margin-top: 40px;*/
+  border: transparent;
+  background: #333333;
+  transition: all 0.25s;
+  border-radius: 18px;
+  color: #dcdcdc;
+  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.dark-body .bt-feedback:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  -webkit-transform: scale(1.07, 1.07);
+  transform: scale(1.07, 1.07);
+}
+.light-body .more-info {
+  color: gray;
+  font-weight: lighter;
+}
+
+.light-body .bt-feedback {
+  width: 300px;
+  padding: 10px;
+  margin: 15px;
+  /*margin-top: 40px;*/
+  border: transparent;
+  background: #F4F4F6;
+  transition: all 0.25s;
+  border-radius: 18px;
+  color: #6d6d6d;
+  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.light-body .bt-feedback:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  -webkit-transform: scale(1.07, 1.07);
+  transform: scale(1.07, 1.07);
+}
+
+.buttons {
+  margin-top: 100px;
+}
+
+.dark-body .none-more{
+  color: #d2d2d2;
+}
+.light-body .none-more{
   color:#808080;
 }
 
 /*单个应用模块*/
-.item {
+.dark-body .item {
+  width: 300px;
+  height: 100px;
+  float: left;
+  transition: all 0.25s;
+  margin: 15px;
+  color: #dcdcdc;
+  border-radius: 18px;
+  background: #333333;
+  background: linear-gradient(145deg, #313030, #332f2f);
+  -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+  box-shadow:  11px 11px 22px #1c1c1c,
+  -11px -11px 22px #2e2e2e;
+
+  overflow: hidden;
+  z-index: 0;
+}
+.light-body .item {
   width: 300px;
   height: 100px;
   float: left;
@@ -51,13 +130,23 @@ html,body{
   overflow: hidden;
   z-index: 0;
 }
-.item:hover {
+.dark-body .item:hover {
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   -webkit-transform: scale(1.07, 1.07);
   transform: scale(1.07, 1.07);
-
 }
-.item:active{
+.light-body .item:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  -webkit-transform: scale(1.07, 1.07);
+  transform: scale(1.07, 1.07);
+}
+.dark-body .item:active{
+  border-radius: 32px;
+  background: linear-gradient(145deg, #212121, #282828);
+  box-shadow:  11px 11px 22px #1c1c1c,
+  -11px -11px 22px #2e2e2e;
+}
+.light-body .item:active{
   border-radius: 32px;
   background: linear-gradient(145deg, #e6e6e6, #ffffff);
   box-shadow:  5px 5px 10px #e0e0e0,
@@ -108,7 +197,19 @@ html,body{
   max-width: 1500px;
   text-align: center;
 }
-.app-name{
+.dark-body .app-name{
+  text-align: left;
+  margin: 20px;
+  font-weight: lighter;
+  display:block;
+  overflow:hidden;
+  word-break:keep-all;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  color: #f1ecec;
+  padding-right: 10px;
+}
+.light-body .app-name{
   text-align: left;
   margin: 20px;
   font-weight: lighter;
@@ -120,7 +221,19 @@ html,body{
   color: #494949;
   padding-right: 10px;
 }
-.app-more{
+.dark-body .app-more{
+  text-align: left;
+  font-size:10px;
+  font-weight: lighter;
+  display:block;
+  overflow:hidden;
+  word-break:keep-all;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  color: #999999;
+  padding-right: 10px;
+}
+.light-body .app-more{
   text-align: left;
   font-size:10px;
   font-weight: lighter;

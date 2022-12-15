@@ -47,6 +47,15 @@ export default {
     };
   },
   methods: {
+    setTheme()
+    {
+      if(this.$route.query.theme == 'dark')
+      {
+        document.body.className = 'dark-body';
+      }else{
+        document.body.className = 'light-body';
+      }
+    },
     GotoJson(icon) {
       let appUrl = icon.replace('icon.png', 'app.json')
       console.log(appUrl);
@@ -83,16 +92,15 @@ export default {
     }
   },
   async mounted() {
+    this.setTheme();
     this.Search();
-  },
-  beforeCreate() {
-    document.body.className = 'light-body';
   },
   // 监听,当路由发生变化的时候执行
   watch: {
     $route: {
       handler: function (val, oldVal) {
         console.log(val);
+        this.setTheme();
         this.Search();
       },
       // 深度观察监听
@@ -108,4 +116,3 @@ export default {
 <style scoped>
 @import "../../static/style.css";
 </style>
-

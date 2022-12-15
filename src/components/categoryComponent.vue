@@ -44,6 +44,15 @@ export default {
         };
     },
     methods: {
+        setTheme()
+        {
+            if(this.$route.query.theme == 'dark')
+            {
+                document.body.className = 'dark-body';
+            }else{
+                document.body.className = 'light-body';
+            }
+        },
         getUrl() {
             if (location.hostname == 'localhost' || location.hostname == '127.0.0.1') {
                 this.source = 'https://d.store.deepinos.org.cn/';
@@ -53,11 +62,14 @@ export default {
         getInfo() {
             axios
                 .get(
-                    `${this.source}/store/${this.category}/applist.json`
+                    `${this.source}/store/`+this.$route.query.type+`/applist.json`
                 )
                 //applist.json 软件列表
                 .then((res) => {
+                    this.category = this.$route.query.type;
                     // console.log(res.data, '<=======');
+                    window.scrollTo(0, 0);
+                    this.list.length = 0;
                     this.list = res.data;
                 });
         },
@@ -78,12 +90,21 @@ export default {
         },
     },
     mounted() {
+        this.setTheme();
         this.getUrl();
         this.getInfo();
     },
-    beforeCreate() {
-        document.body.className = 'light-body';
-    }
+    watch: {
+    $route: {
+      handler: function (val, oldVal) {
+        console.log(val);
+        this.setTheme();
+        this.getInfo();
+      },
+      // 深度观察监听
+      deep: true
+    },
+    },
 };
 </script>
 

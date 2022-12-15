@@ -50,6 +50,15 @@
       return {}
     },
     methods: {
+      setTheme()
+      {
+            if(this.$route.query.theme == 'dark')
+            {
+                document.body.className = 'dark-body';
+            }else{
+                document.body.className = 'light-body';
+            }
+      },
       //反馈中心
       FeedBack() {
         window.open(" https://www.deepinos.org/t/spark-feedback", "_blank", "")
@@ -79,46 +88,23 @@
      /*  Search: function () {
         this.$router.push({name: "Search"})
       } */
-    }
+    },
+    mounted() {
+        this.setTheme();
+    },
+    watch: {
+    $route: {
+      handler: function (val, oldVal) {
+        console.log(val);
+        this.setTheme();
+      },
+      // 深度观察监听
+      deep: true
+    },
+    },
   }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  #app {
-    height: 700px;
-    overflow: hidden;
-    border: transparent;
-    font-family: Bahnschrift;
-  }
-  .more-info {
-    color: gray;
-    font-weight: lighter;
-  }
-
-  .bt-feedback {
-    width: 300px;
-    padding: 10px;
-    margin: 15px;
-    /*margin-top: 40px;*/
-    border: transparent;
-    background: #F4F4F6;
-    transition: all 0.25s;
-    border-radius: 18px;
-    color: #6d6d6d;
-    -webkit-transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-  }
-
-  .bt-feedback:hover {
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    -webkit-transform: scale(1.07, 1.07);
-    transform: scale(1.07, 1.07);
-  }
-
-  .buttons {
-    margin-top: 100px;
-  }
-
+@import "../../static/style.css";
 </style>
