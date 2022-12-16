@@ -37,7 +37,12 @@ body {
   margin: 0;
   border: 0;
 }
-
+html,body{
+  -webkit-touch-callout:none ;
+  -webkit-text-size-adjust:none ;
+  -webkit-tap-highlight-color:transparent ;
+  -webkit-user-select:none ;
+}
 /*滚动条样式*/
 ::-webkit-scrollbar {
   transition: all 1000ms;

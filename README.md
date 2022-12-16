@@ -35,6 +35,17 @@ For a detailed explanation on how things work, check out the [guide](http://vuej
 ./dist/static 放服务器根目录下的 static
 ./dist/index.html 放服务器 store 文件夹内的 index.html
 
+#### 4.0 New version：
+> 主页的网址为 http://localhost:8080/#/new/?theme=light
+
+> 分类页的网址为 http://localhost:8080/#/new/applist?theme=light&type=chat
+
+> 搜索页的网址为 http://localhost:8080/#/new/search?theme=light&keywords=yzzi
+
+(深色模式请将`theme=light`改为`theme=dark`)
+
+注意 4.0新版 完全兼容旧版的接口，所以您也可以使用下面的旧版接口，但是不建议您这么做。
+
 
 #### LIGHTMOD:
 
