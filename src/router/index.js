@@ -13,17 +13,17 @@ export default new Router({
   //mode:'history',
   routes: [
     {
-      path: '/new',
+      path: '/flamescion',
       name: 'MainPage',
       component: Mainpage
     },
     {
-      path: '/new/applist',
+      path: '/flamescion/applist',
       name: 'AppList',
       component: AppList
     },
     {
-      path: '/new/search',
+      path: '/flamescion/search',
       name: 'Search',
       component :Search
     },
