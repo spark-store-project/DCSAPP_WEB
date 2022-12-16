@@ -27,6 +27,8 @@ export default new Router({
       name: 'Search',
       component :Search
     },
+
+    //以下是为了兼容旧版客户端所写的兼容层
     {
       path: '/',
       name: 'OldMainPage',

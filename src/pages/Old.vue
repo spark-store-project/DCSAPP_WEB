@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-  <!--    主页-->
+  <!--    兼容层-->
       <center>
 
       </center>
