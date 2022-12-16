@@ -19,6 +19,7 @@
         {
             let theme;
             let name = this.$route.params.name;
+            let keywords = this.$route.query.keywords;
             name = name.toLowerCase();
             if(name.includes('dark'))
             {
@@ -36,6 +37,10 @@
                 let oldType = ["programming","themes","musicandsound","games","photos","relations","tools","videos","others","network","office","reading"];
                 let newType = ["development","themes","music","games","image_graphics","chat","tools","video","others","network","office","reading"];
                 this.$router.push({name:'AppList',query: {type:newType[oldType.indexOf(name)],theme:theme}});
+            }
+            if(name == "search")
+            {
+                this.$router.push({name:'Search',query: {theme:theme,keywords:keywords}});
             }
         },
       },
