@@ -32,6 +32,8 @@ export default {
 </script>
 
 <style>
+@import url(../static/color.css);
+
 body {
   padding: 0;
   margin: 0;
@@ -54,17 +56,13 @@ html,body{
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #66CCFF;
+  background-color: var(--scrollbar-color);
   border-radius: 6px;
 }
 
-.dark-body
+body
 {
-  background-color: #252525;
-}
-.light-body
-{
-  background-color: white;
+  background-color: var(--body-backgroundColor);
 }
 
 #app {

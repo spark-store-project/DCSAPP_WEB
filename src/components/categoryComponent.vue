@@ -48,9 +48,9 @@ export default {
         {
             if(this.$route.query.theme == 'dark')
             {
-                document.body.className = 'dark-body';
+                document.body.classList.add('dark'); 
             }else{
-                document.body.className = 'light-body';
+                document.body.classList.remove('dark');
             }
         },
         getUrl() {
