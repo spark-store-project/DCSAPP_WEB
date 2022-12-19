@@ -104,7 +104,3 @@
     },
   }
 </script>
-
-<style scoped>
-@import "../../static/style.css";
-</style>

@@ -33,6 +33,7 @@ export default {
 
 <style>
 @import url(../static/color.css);
+@import url(../static/style.css);
 
 body {
   padding: 0;
