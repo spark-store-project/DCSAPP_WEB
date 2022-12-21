@@ -6,7 +6,7 @@
             <div class="item" v-for="item in list" :key="item.tip" @click="GotoJson(ReplaceUrl(item.Pkgname),item.Category)">
                 <span class="show">
                     <!--            应用icon-->
-                    <img :src="ReplaceUrl(`${imgSource}/store/${category}/${item.Pkgname}/icon.png`)" alt="icon"
+                    <img :src="ReplaceUrl(`${imgSource}/store/${item.Category}/${item.Pkgname}/icon.png`)" alt="icon"
                         class="icon-m" />
                     <span class="app-title">
                         <!--              应用名-->
@@ -18,7 +18,7 @@
                         </div>
                     </span>
                 </span>
-                <img :src="ReplaceUrl(`${imgSource}/store/${category}/${item.Pkgname}/icon.png`)" alt="icon"
+                <img :src="ReplaceUrl(`${imgSource}/store/${item.Category}/${item.Pkgname}/icon.png`)" alt="icon"
                     class="icon-bg" />
             </div>
         </div>
