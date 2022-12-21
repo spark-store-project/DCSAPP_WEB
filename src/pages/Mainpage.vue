@@ -7,7 +7,7 @@
         <!--        单个链接模块-->
         <div class="link" v-for="links in links" :key="links.tip" @click="openLink(links.url, links.type)">
           <div>
-            <img class="links-cover" :src="ReplaceUrl(`${imgSource}/store/${links.imgUrl}`)"/>
+            <img class="links-cover" :src="ReplaceUrl(`${imgSource}store${links.imgUrl}`)"/>
             <div class="links-data">
               <h3 class="link-name">{{ links.name }}</h3>
               <p class="link-more">{{ links.more }}</p>
@@ -33,6 +33,7 @@ export default {
     return {
       links: [],
       lists: [],
+      source: location.protocol + '//' + location.host + '/',
       imgSource: "https://code.gitlink.org.cn/shenmo7192/spark-store-png-accelerate/raw/branch/master/"
     };
   },
