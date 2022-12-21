@@ -50,7 +50,7 @@ export default {
         getInfo() {
             axios
                 .get(
-                    `${this.source}/store/` + this.jsonUrl
+                    `${this.source}/store` + this.jsonUrl
                 )
                 //applist.json 软件列表
                 .then((res) => {
