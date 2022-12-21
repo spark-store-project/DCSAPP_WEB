@@ -11,12 +11,8 @@
             <img :src="ReplaceUrl(item.icon)" alt="icon" class="icon-m" />
             <span class="app-title">
               <!--              应用名-->
-              <div>
                 <h3 class="app-name" :title="`${item.name}`">{{ item.name }}</h3>
-              </div>
-              <div>
                 <h4 class="app-more" :title="`${item.more}`">{{ item.more }}</h4>
-              </div>
             </span>
           </span>
           <img :src="ReplaceUrl(item.icon)" alt="icon" class="icon-bg" />
