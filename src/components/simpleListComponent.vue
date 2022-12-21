@@ -10,12 +10,8 @@
                         class="icon-m" />
                     <span class="app-title">
                         <!--              应用名-->
-                        <div>
                             <h3 class="app-name" :title="`${item.Name}`">{{ item.Name }}</h3>
-                        </div>
-                        <div>
                             <h4 class="app-more" :title="`${item.More}`">{{ item.More }}</h4>
-                        </div>
                     </span>
                 </span>
                 <img :src="ReplaceUrl(`${imgSource}/store/${item.Category}/${item.Pkgname}/icon.png`)" alt="icon"
