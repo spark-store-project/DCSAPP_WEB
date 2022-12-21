@@ -99,7 +99,7 @@ body .more-info {
 body .title{
   color: var(--title-color);
 }
-body .bt-feedback {
+body .button {
   width: 300px;
   padding: 10px;
   margin: 15px;
@@ -114,7 +114,7 @@ body .bt-feedback {
   overflow: hidden;
 }
 
-body .bt-feedback:hover {
+body .button:hover {
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   -webkit-transform: scale(1.07, 1.07);
   transform: scale(1.07, 1.07);
@@ -202,6 +202,70 @@ body .item:active{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 }
+
+.links-data {
+  text-align: left;
+}
+
+.link:hover {
+  -webkit-transform: scale(1.07, 1.07);
+  transform: scale(1.07, 1.07);
+}
+
+.link-name{
+  text-align: left;
+  font-weight: lighter;
+  display:block;
+  overflow:hidden;
+  word-break:keep-all;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  color: var(--appName-color);
+  margin: 0px;
+  padding-right: 10px;
+}
+
+.link-more{
+  text-align: left;
+  font-size:10px;
+  margin: 0px;
+  font-weight: lighter;
+  display:block;
+  overflow:hidden;
+  word-break:keep-all;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  color: var(--appMore-color);
+  padding-right: 10px;
+}
+
+.link{
+  width: 200px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  padding: 0px;
+  border-radius: 8px;
+  height: 150px;
+}
+
+.links-cover {
+  width: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  height: 94px;
+}
+
+.links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.home-title{
+  color: var(--appName-color);
+  text-align: left;
+  margin-left: 20px;
+}
+
 body .app-name{
   text-align: left;
   margin: 20px;

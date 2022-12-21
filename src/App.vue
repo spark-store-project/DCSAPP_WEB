@@ -24,10 +24,30 @@ export default {
     return {};
   },
   methods: {
+    setTheme() {
+      if (this.$route.query.theme == 'dark') {
+        document.body.classList.add('dark');
+      } else {
+        document.body.classList.remove('dark');
+      }
+    },
     clickTitle: function() {
       window.open("/");
     }
-  }
+  },
+  mounted() {
+    this.setTheme();
+  },
+  watch: {
+    $route: {
+      handler: function (val, oldVal) {
+        console.log(val);
+        this.setTheme();
+      },
+      // 深度观察监听
+      deep: true
+    },
+  },
 };
 </script>
 

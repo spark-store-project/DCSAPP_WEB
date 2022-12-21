@@ -1,106 +1,77 @@
 <template>
   <div id="app">
-<!--    主页-->
+    <!--    主页-->
     <center>
-      <br><br>
-      <h1 class="title">Spark Store</h1>
-      <h3 class="more-info">
-        Have more.
-      </h3>
-      <div class="buttons">
-
-
-        <!--
-          愿望墙: http://www.shenmo.tech:420/?p=91
-          应用问题反馈: http://www.shenmo.tech:420/?p=419
-          APP建议: http://www.shenmo.tech:420/?p=422
-          国际排名：http://distrowatch.com/table.php?distribution=deepin
-          
-          商店官网: https://www.spark-app.store/
-          所有的问题反馈换成这统一的入口
-          社区反馈中心: https://www.deepinos.org/t/spark-feedback
-          gitee反馈中心: https://gitee.com/deepin-community-store/feedback
-      -->
-        <!--
-        <button @click="Search" class="bt-feedback" disabled>搜索应用(暂未开放)</button>
-        <br>
-        <button @click="distrowatch" class="bt-feedback"><b>Deepin国际排名</b></button>
-        -->
-        <br>
-        <button @click="Wishwall" class="bt-feedback">愿望墙</button>
-        <br>
-        <button @click="FeedBack" class="bt-feedback">反馈中心</button>
-        <br>
-        <button @click="Contri" class="bt-feedback">参与贡献</button>
-        <br>
-        <button @click="Donate" class="bt-feedback">随喜捐赠</button>
-        <br>
-        <button @click="Monitor" class="bt-feedback">节点监控</button>
-        <br>
+      <h2 class="home-title">链接</h2>
+      <div class="links">
+        <!--        单个链接模块-->
+        <div class="link" v-for="links in links" :key="links.tip" @click="openLink(links.url, links.type)">
+          <div>
+            <img class="links-cover" :src="ReplaceUrl(`${imgSource}/store/${links.imgUrl}`)"/>
+            <div class="links-data">
+              <h3 class="link-name">{{ links.name }}</h3>
+              <p class="link-more">{{ links.more }}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </center>
+    <simpleListComponent v-for="lists in lists" :json-url="lists.jsonUrl" :listName="lists.name"></simpleListComponent>
   </div>
-
 </template>
 
 <script>
-  export default {
-    name: 'HelloWorld',
-    data() {
-      return {}
+import axios from "axios";
+import simpleListComponent from "../components/simpleListComponent";
+
+export default {
+  name: 'Mainpage',
+  components: {
+    simpleListComponent
+  },
+  data() {
+    return {
+      links: [],
+      lists: [],
+      imgSource: "https://code.gitlink.org.cn/shenmo7192/spark-store-png-accelerate/raw/branch/master/"
+    };
+  },
+  methods: {
+    getUrl() {
+      if (location.hostname == 'localhost' || location.hostname == '127.0.0.1') {
+        this.source = 'https://d.store.deepinos.org.cn/';
+        this.imgSource = 'https://d.store.deepinos.org.cn/';
+      }
     },
-    methods: {
-      setTheme()
-      {
-            if(this.$route.query.theme == 'dark')
-            {
-                document.body.classList.add('dark'); 
-            }else{
-                document.body.classList.remove('dark');
-            }
-      },
-      //反馈中心
-      FeedBack() {
-        window.open(" https://www.deepinos.org/t/spark-feedback", "_blank", "")
-      },
-      //愿望墙,跳转到指定页面
-      Wishwall(){window.open(" https://www.deepinos.org/t/Wish-wall", "_blank", "")},
-      
-      //节点监控
-      Monitor(){
-        window.open("https://status.deepinos.org.cn/", "_self", "")
-      },
-      //参与贡献
-      Contri(){window.open("https://gitee.com/deepin-community-store", "_blank", "")},
-      //随喜捐赠，地址改为二维码地址
-      Donate(){window.open("https://donate.deepinos.org.cn/donate/index.html", "_self", "")},
-     /*  officialwebsite: function () {
-        window.open(" https://www.spark-app.store/", "_self", "")
-      }, */
-      //国际排名
-      /* distrowatch: function () {
-        window.open("https://distrowatch.com/table.php?distribution=deepin", "_self", "")
-      }, */
-     /*  GiteeFeedBack: function () {
-        window.open("https://gitee.com/deepin-community-store/feedback", "_self", "")
-      }, */
-      
-     /*  Search: function () {
-        this.$router.push({name: "Search"})
-      } */
+    getInfo() {
+      axios
+        .get(
+          `${this.source}/store/home/homelinks.json`
+        )
+        //homelinks.json 链接列表
+        .then((res) => {
+          this.links = res.data;
+        });
+
+      axios
+        .get(
+          `${this.source}/store/home/homelist.json`
+        )
+        //homelist.json 列表
+        .then((res) => {
+          this.lists = res.data;
+        });
     },
-    mounted() {
-        this.setTheme();
+    openLink(url, type) {
+      window.open(url, type, "")
     },
-    watch: {
-    $route: {
-      handler: function (val, oldVal) {
-        console.log(val);
-        this.setTheme();
-      },
-      // 深度观察监听
-      deep: true
-    },
-    },
+    ReplaceUrl(icon) {
+            return icon.replace(/\+/g,'%2B')
+    }
+  },
+  mounted() {
+    this.getUrl();
+    this.getInfo();
   }
+}
 </script>

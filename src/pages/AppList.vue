@@ -8,7 +8,7 @@
 import categoryComponent from "../components/categoryComponent";
 
 export default {
-  name: "Games",
+  name: "AppList",
   components: {
     categoryComponent
   },

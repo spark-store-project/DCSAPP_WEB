@@ -44,15 +44,6 @@ export default {
         };
     },
     methods: {
-        setTheme()
-        {
-            if(this.$route.query.theme == 'dark')
-            {
-                document.body.classList.add('dark'); 
-            }else{
-                document.body.classList.remove('dark');
-            }
-        },
         getUrl() {
             if (location.hostname == 'localhost' || location.hostname == '127.0.0.1') {
                 this.source = 'https://d.store.deepinos.org.cn/';
@@ -90,7 +81,6 @@ export default {
         },
     },
     mounted() {
-        this.setTheme();
         this.getUrl();
         this.getInfo();
     },
@@ -98,7 +88,6 @@ export default {
     $route: {
       handler: function (val, oldVal) {
         console.log(val);
-        this.setTheme();
         this.getInfo();
       },
       // 深度观察监听
