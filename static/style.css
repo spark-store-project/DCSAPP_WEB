@@ -7,7 +7,6 @@ html,body{
   -webkit-touch-callout:none ;
   -webkit-text-size-adjust:none ;
   -webkit-tap-highlight-color:transparent ;
-  -webkit-user-select:none ;
 }
 /*滚动条样式*/
 ::-webkit-scrollbar {
@@ -191,7 +190,6 @@ body .item:active{
 /*应用图标*/
 .icon-m {
   float: left;
-  width: calc(height);
   height: 77%;
   background: transparent;
   margin: 10px;
