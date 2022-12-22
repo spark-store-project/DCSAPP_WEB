@@ -104,6 +104,7 @@ body .button {
   margin: 15px;
   /*margin-top: 40px;*/
   border: transparent;
+  outline:none;
   background: var(--bt-feedback-backgroundColor);
   transition: all 0.25s;
   border-radius: 18px;
