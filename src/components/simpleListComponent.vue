@@ -1,7 +1,7 @@
 <template>
     <center>
         <h2 class="home-title">{{ listName }}</h2>
-        <div class="list">
+        <div class="simpleList">
             <!--        单个应用模块-->
             <div class="item" v-for="item in list" :key="item.tip" @click="GotoJson(ReplaceUrl(item.Pkgname),item.Category)">
                 <span class="show">
@@ -18,7 +18,7 @@
                     class="icon-bg" />
             </div>
         </div>
-        <!-- <button class="button" @click="ShowAll">查看全部</button> -->
+        <button class="button" @click="ShowAll($event)">查看全部</button>
     </center>
 </template>
 
@@ -65,9 +65,16 @@ export default {
                 ""
             );
         },
-        //ShowAll() {
-        //    this.$router.push({name:'AppList',query: {theme:this.$route.query.theme},params:{jsonUrl:this.jsonUrl}});
-        //},
+        ShowAll($event) {
+            if(event.target.innerHTML == "查看全部")
+            {
+                event.currentTarget.parentElement.childNodes[2].style.height = "auto"
+                event.target.innerHTML = "收起"
+            }else{
+                event.currentTarget.parentElement.childNodes[2].style.height = "130px"
+                event.target.innerHTML = "查看全部"
+            }
+        },
         ReplaceUrl(icon) {
             return icon.replace(/\+/g, '%2B')
         },

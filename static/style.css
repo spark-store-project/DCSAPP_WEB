@@ -213,7 +213,13 @@ body .item:active{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 }
-
+.simpleList {
+  height: 130px;
+  overflow:hidden;
+  margin-right: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
 .links-data {
   text-align: left;
 }
