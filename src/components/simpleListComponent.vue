@@ -44,9 +44,17 @@ export default {
             }
         },
         getInfo() {
+            let jsonUrl
+            if(this.jsonUrl.includes('http'))
+            {
+                jsonUrl = this.jsonUrl
+            }else{
+                jsonUrl = `${this.source}/store` + this.jsonUrl
+            }
+
             axios
                 .get(
-                    `${this.source}/store` + this.jsonUrl
+                    jsonUrl
                 )
                 //applist.json 软件列表
                 .then((res) => {
