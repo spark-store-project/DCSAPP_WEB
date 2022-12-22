@@ -7,7 +7,8 @@
     --bt-feedback-backgroundColor: #F4F4F6;
     --none-more-color: #808080;
     --item-color: #6d6d6d;
-    --item-backgroundColor: #F4F4F6;
+    --item-borderColor: #eaeaea;
+    --item-backgroundColor: #f9f9f9;
     --item-backgroundColor1: #e6e6e6;
     --item-backgroundColor2: #ffffff;
     --item-boxShadowColor1: #e0e0e0;
@@ -24,6 +25,7 @@
     --bt-feedback-backgroundColor: #333333;
     --none-more-color: #d2d2d2;
     --item-color: #dcdcdc;
+    --item-borderColor: #232323;
     --item-backgroundColor: #333333;
     --item-backgroundColor1: #313030;
     --item-backgroundColor2: #332f2f;
