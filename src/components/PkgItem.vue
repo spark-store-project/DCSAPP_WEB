@@ -1,6 +1,6 @@
 <template>
     <!--  单个应用模块  -->
-    <div class="item" :key="item.tip" @click="$emit('click')" @mouseenter="cardMouseenter" @mouseleave="cardMouseleave">
+    <div class="item" @click="$emit('click')" @mouseenter="cardMouseenter" @mouseleave="cardMouseleave">
         <div :src="imgSrc" class="card-bg" :style="cardBgStyle"/>
         <span class="show">
             <!--  应用icon  -->
@@ -49,14 +49,18 @@ export default {
         },
     },
     created() {
+        // 动画控制器
         const animator = directionalAnimator({
             duration: 375,
             onStep: step => this.cardBgStep = step
         })
+        // 鼠标划入时，执行正向动画
         this.cardMouseenter = animator.positive
+        // 鼠标移出时，执行负向动画
         this.cardMouseleave = animator.negative
     },
     methods: {
+        // 预置空方法（interface）
         cardMouseenter: () => {},
         cardMouseleave: () => {},
     },
