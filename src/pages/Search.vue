@@ -28,7 +28,7 @@ import PkgItem from "../components/PkgItem.vue";
 
 export default {
   name: "Search",
-    components: {PkgItem},
+  components: {PkgItem},
   data() {
     return {
       list: [],
