@@ -3,20 +3,12 @@
         <h2 class="home-title">{{ listName }}</h2>
         <div class="simpleList">
             <!--        单个应用模块-->
-            <div class="item" v-for="item in list" :key="item.tip" @click="GotoJson(ReplaceUrl(item.Pkgname),item.Category)">
-                <span class="show">
-                    <!--            应用icon-->
-                    <img :src="ReplaceUrl(`${imgSource}/store/${item.Category}/${item.Pkgname}/icon.png`)" alt="icon"
-                        class="icon-m" />
-                    <span class="app-title">
-                        <!--              应用名-->
-                            <h3 class="app-name" :title="`${item.Name}`">{{ item.Name }}</h3>
-                            <h4 class="app-more" :title="`${item.More}`">{{ item.More }}</h4>
-                    </span>
-                </span>
-                <img :src="ReplaceUrl(`${imgSource}/store/${item.Category}/${item.Pkgname}/icon.png`)" alt="icon"
-                    class="icon-bg" />
-            </div>
+            <PkgItem
+                v-for="item in list"
+                :key="item.tip"
+                :item="item"
+                :img-src="ReplaceUrl(`${imgSource}/store/${item.Category}/${item.Pkgname}/icon.png`)"
+                @click="GotoJson(ReplaceUrl(item.Pkgname), item.Category)" />
         </div>
         <button class="button" @click="ShowAll($event)">查看全部</button>
     </center>
@@ -24,8 +16,10 @@
 
 <script>
 import axios from "axios";
+import PkgItem from "./PkgItem.vue";
 
 export default {
+    components: {PkgItem},
     props: ['jsonUrl',"listName"],
     data() {
         return {

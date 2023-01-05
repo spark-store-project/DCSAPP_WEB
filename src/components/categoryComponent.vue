@@ -6,19 +6,12 @@
             <div class="topShadows"></div>
             <div class="list">
                 <!--        单个应用模块-->
-                <div class="item" v-for="item in list" :key="item.tip" @click="GotoJson(ReplaceUrl(item.Pkgname))">
-                    <span class="show">
-                        <!--            应用icon-->
-                        <img :src="ReplaceUrl(`${imgSource}/store/${category}/${item.Pkgname}/icon.png`)" alt="icon"
-                            class="icon-m" />
-                        <span class="app-title">
-                            <!--              应用名-->
-                            <h3 class="app-name" :title="`${item.Name}`">{{ item.Name }}</h3>
-                            <h4 class="app-more" :title="`${item.More}`">{{ item.More }}</h4>
-                        </span>
-                    </span>
-                    <img :src="ReplaceUrl(`${imgSource}/store/${category}/${item.Pkgname}/icon.png`)" alt="icon" class="icon-bg" />
-                </div>
+                <PkgItem
+                    v-for="item in list"
+                    :key="item.tip"
+                    :item="item"
+                    :img-src="ReplaceUrl(`${imgSource}/store/${category}/${item.Pkgname}/icon.png`)"
+                    @click="GotoJson(ReplaceUrl(item.Pkgname))" />
             </div>
         </center>
     </div>
@@ -26,9 +19,11 @@
 
 <script>
 import axios from "axios";
+import PkgItem from "./PkgItem.vue";
 
 export default {
     name: "categoryComponent",
+    components: {PkgItem},
     listName: "",
     //category用来在App.vue中区分类别
     //category名称就是分类名
