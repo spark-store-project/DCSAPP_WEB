@@ -172,7 +172,7 @@ body .item:active{
   width: 0;
 }
 
-.icon-bg {
+/*.icon-bg {
   height: 100px;
   float: left;
   filter: blur(25px) opacity(2%);
@@ -188,7 +188,7 @@ body .item:active{
   filter: blur(25px) opacity(20%);
   transform: scale(3);
   visibility: visible;
-}
+}*/
 
 .icon-m:hover {
   transform: rotate(666turn);

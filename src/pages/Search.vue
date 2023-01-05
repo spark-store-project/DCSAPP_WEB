@@ -5,18 +5,12 @@
     <center>
       <div class="list" v-if="isShow">
         <!--        单个应用模块-->
-        <div class="item" v-for="item in list" :key="item.id" @click="GotoJson(ReplaceUrl(item.icon))">
-          <span class="show">
-            <!--            应用icon-->
-            <img :src="ReplaceUrl(item.icon)" alt="icon" class="icon-m" />
-            <span class="app-title">
-              <!--              应用名-->
-                <h3 class="app-name" :title="`${item.name}`">{{ item.name }}</h3>
-                <h4 class="app-more" :title="`${item.more}`">{{ item.more }}</h4>
-            </span>
-          </span>
-          <img :src="ReplaceUrl(item.icon)" alt="icon" class="icon-bg" />
-        </div>
+        <PkgItem
+          v-for="item in list"
+          :key="item.id"
+          :item="{Name: item.name, More: item.more}"
+          :img-src="ReplaceUrl(item.icon)"
+          @click="GotoJson(ReplaceUrl(item.icon))" />
       </div>
     </center>
     <center>
@@ -30,9 +24,11 @@
 
 <script>
 import { $_getResult } from '@/apis/api'
+import PkgItem from "../components/PkgItem.vue";
 
 export default {
   name: "Search",
+  components: {PkgItem},
   data() {
     return {
       list: [],
@@ -74,7 +70,7 @@ export default {
         else{
           this.isEmpty = false
           this.isShow = true
-        }     
+        }
       }
     }
   },
