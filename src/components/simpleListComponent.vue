@@ -1,7 +1,7 @@
 <template>
     <center>
         <h2 class="home-title">{{ listName }}</h2>
-        <div class="simpleList">
+        <div class="simpleList" :class="{ 'show-all': showingAll }">
             <!--        单个应用模块-->
             <PkgItem
                 v-for="item in list"
@@ -10,7 +10,7 @@
                 :img-src="ReplaceUrl(`${imgSource}/store/${item.Category}/${item.Pkgname}/icon.png`)"
                 @click="GotoJson(ReplaceUrl(item.Pkgname), item.Category)" />
         </div>
-        <button class="button" @click="ShowAll($event)">查看全部</button>
+        <button class="button" @click="ShowAll">{{ showingAll ? '收起' : '查看全部' }}</button>
     </center>
 </template>
 
@@ -29,6 +29,25 @@ export default {
             source: location.protocol + '//' + location.host + '/',
             imgSource: "https://code.gitlink.org.cn/shenmo7192/spark-store-png-accelerate/raw/branch/master/",
         };
+    },
+    computed: {
+        showingAll: {
+            get() {
+                const queryShowAll = this.$route.query.showAll;
+                if (!queryShowAll) {
+                    return false
+                }
+                return queryShowAll.split(',').includes(this.listName)
+            },
+            set(show) {
+                const prev = this.$route.query.showAll;
+                const next = [
+                    ...(prev ? prev.split(',').filter(n => n !== this.listName) : []),
+                    ...(show ? [this.listName] : [])
+                ].join(',')
+                this.$router.replace({query: {...this.$route.query, showAll: next}})
+            }
+        }
     },
     methods: {
         getUrl() {
@@ -67,15 +86,8 @@ export default {
                 ""
             );
         },
-        ShowAll($event) {
-            if(event.target.innerHTML == "查看全部")
-            {
-                event.currentTarget.parentElement.childNodes[2].style.height = "auto"
-                event.target.innerHTML = "收起"
-            }else{
-                event.currentTarget.parentElement.childNodes[2].style.height = "130px"
-                event.target.innerHTML = "查看全部"
-            }
+        ShowAll() {
+            this.showingAll = !this.showingAll
         },
         ReplaceUrl(icon) {
             return icon.replace(/\+/g, '%2B')
@@ -87,3 +99,12 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+.simpleList:not(.show-all) {
+    height: 130px;
+}
+.simpleList.show-all {
+    height: auto;
+}
+</style>
