@@ -27,7 +27,7 @@ export default {
             category: "",
             downloadContent: "DOWNLOAD",
             source: location.protocol + '//' + location.host + '/',
-            imgSource: "https://code.gitlink.org.cn/shenmo7192/spark-store-png-accelerate/raw/branch/master/",
+            imgSource: location.protocol + '//' + location.host + '/',
         };
     },
     computed: {
