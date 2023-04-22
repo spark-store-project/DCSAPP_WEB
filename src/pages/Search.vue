@@ -59,7 +59,7 @@ export default {
     async Search() {
       console.log(this.$route.query.keywords);
       if (this.$route.query.keywords) {
-        const res = await searchApps(this.$route.query.keywords);
+        const res = await searchApps(this.$route.query.keywords,this.$route.query.arch);
         this.list = res;
         this.result = this.list.length;
         console.log(this.result)
