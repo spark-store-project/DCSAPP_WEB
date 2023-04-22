@@ -8,8 +8,8 @@
         <PkgItem
           v-for="item in list"
           :key="item.id"
-          :item="{Name: item.name, More: item.more}"
-          :img-src="ReplaceUrl(item.icon)"
+          :item="{Name: item.Name, More: item.More}"
+          :img-src="ReplaceUrl(item.icons)"
           @click="GotoJson(ReplaceUrl(item.icon))" />
       </div>
     </center>
@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { $_getResult } from '@/apis/api'
+import { searchApps } from '@/apis/api'
 import PkgItem from "../components/PkgItem.vue";
 
 export default {
@@ -59,17 +59,16 @@ export default {
     async Search() {
       console.log(this.$route.query.keywords);
       if (this.$route.query.keywords) {
-        let res = await $_getResult({ keyword: this.$route.query.keywords })
-        this.list = res.data
-        this.result = this.list.length
+        const res = await searchApps(this.$route.query.keywords);
+        this.list = res;
+        this.result = this.list.length;
         console.log(this.result)
-        if(this.result == 0){
-          this.isEmpty = true
-          this.isShow = false
-        }
-        else{
-          this.isEmpty = false
-          this.isShow = true
+        if (this.result === 0) {
+          this.isEmpty = true;
+          this.isShow = false;
+        } else {
+          this.isEmpty = false;
+          this.isShow = true;
         }
       }
     }
