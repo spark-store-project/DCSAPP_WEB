@@ -9,8 +9,8 @@
           v-for="item in list"
           :key="item.id"
           :item="{Name: item.Name, More: item.More}"
-          :img-src="ReplaceUrl(item.icons)"
-          @click="GotoJson(ReplaceUrl(item.icon))" />
+          :img-src="ReplaceUrl(item.iconurl)"
+          @click="GotoJson(ReplaceUrl(item.jsonurl))" />
       </div>
     </center>
     <center>
