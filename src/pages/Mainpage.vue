@@ -35,8 +35,8 @@ export default {
     return {
       links: [],
       lists: [],
-      source: location.protocol + '/' + this.$route.query.arch === 'aarch64' ? 'aarch64-store' : 'store' + location.host + '/',
-      imgSource: location.protocol + '/' + this.$route.query.arch === 'aarch64' ? 'aarch64-store' : 'store' + location.host + '/',
+      source: location.protocol + '//' + location.host + '/' + this.$route.query.arch === 'aarch64' ? 'aarch64-store' : 'store',
+      imgSource: location.protocol + '//' + location.host + '/' + this.$route.query.arch === 'aarch64' ? 'aarch64-store' : 'store',
     };
   },
   methods: {
@@ -45,8 +45,8 @@ export default {
         this.source = this.$route.query.arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;
         this.imgSource = this.$route.query.arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;
       }else{
-            this.source = location.protocol + '/' + this.$route.query.arch === 'aarch64' ? 'aarch64-store' : 'store' + location.host + '/';
-            this.imgSource = location.protocol + '/' + this.$route.query.arch === 'aarch64' ? 'aarch64-store' : 'store' + location.host + '/';
+            this.source = location.protocol + '//' + location.host + '/' + this.$route.query.arch === 'aarch64' ? 'aarch64-store' : 'store';
+            this.imgSource = location.protocol + '//' + location.host + '/' + this.$route.query.arch === 'aarch64' ? 'aarch64-store' : 'store';
         }
     },
     getInfo() {
