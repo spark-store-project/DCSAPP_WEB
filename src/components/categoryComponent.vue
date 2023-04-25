@@ -40,9 +40,12 @@ export default {
     methods: {
         getUrl() {
         if (location.hostname == 'localhost' || location.hostname == '127.0.0.1') {
-            this.source = this.$route.query.arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;;
-            this.imgSource = this.$route.query.arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;;
-            }
+            this.source = this.$route.query.arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;
+            this.imgSource = this.$route.query.arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;
+        }else{
+            this.source = location.protocol + '/' + this.$route.query.arch === 'aarch64' ? 'aarch64-store' : 'store' + location.host + '/';
+            this.imgSource = location.protocol + '/' + this.$route.query.arch === 'aarch64' ? 'aarch64-store' : 'store' + location.host + '/';
+        }
         },
         getInfo() {
             axios
