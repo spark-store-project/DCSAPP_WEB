@@ -10,7 +10,7 @@
                     v-for="item in list"
                     :key="item.tip"
                     :item="item"
-                    :img-src="ReplaceUrl(`${imgSource}/store/${category}/${item.Pkgname}/icon.png`)"
+                    :img-src="ReplaceUrl(`${imgSource}/${category}/${item.Pkgname}/icon.png`)"
                     @click="GotoJson(ReplaceUrl(item.Pkgname))" />
             </div>
         </center>
@@ -20,6 +20,7 @@
 <script>
 import axios from "axios";
 import PkgItem from "./PkgItem.vue";
+import { AARCH64_SEARCH_IP, X86_SEARCH_IP } from '../apis/https'
 
 export default {
     name: "categoryComponent",
@@ -38,15 +39,15 @@ export default {
     },
     methods: {
         getUrl() {
-            if (location.hostname == 'localhost' || location.hostname == '127.0.0.1') {
-                this.source = 'https://d.store.deepinos.org.cn/';
-                this.imgSource = 'https://d.store.deepinos.org.cn/';
+        if (location.hostname == 'localhost' || location.hostname == '127.0.0.1') {
+            this.source = this.$route.query.arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;;
+            this.imgSource = this.$route.query.arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;;
             }
         },
         getInfo() {
             axios
                 .get(
-                    `${this.source}/store/`+this.$route.query.type+`/applist.json`
+                    `${this.source}/`+this.$route.query.type+`/applist.json`
                 )
                 //applist.json 软件列表
                 .then((res) => {
@@ -59,12 +60,12 @@ export default {
         },
         GotoJson(pkgn) {
             console.log(
-                `${this.source}/store/${this.category}/${pkgn}/app.json`
+                `${this.source}/${this.category}/${pkgn}/app.json`
                 //app.json 软件的详细信息
             );
             window.open(
                 //pkgn 在仓库中的包名
-                `${this.source}/store/${this.category}/${pkgn}/app.json`,
+                `${this.source}/${this.category}/${pkgn}/app.json`,
                 "_self",
                 ""
             );

@@ -22,8 +22,8 @@ export const searchApps = async (keyword, arch = '') => {
         return filteredData.map((item) => ({
           ...item,
           type: key,
-          jsonurl: `${url}${key}/${item.Pkgname}/app.json`,
-          iconurl: `${url}${key}/${item.Pkgname}/icon.png`
+          jsonurl: `${url}/${key}/${item.Pkgname}/app.json`,
+          iconurl: `${url}/${key}/${item.Pkgname}/icon.png`
       }));
     })
     .catch((error) => {

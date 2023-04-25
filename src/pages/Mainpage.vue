@@ -8,7 +8,7 @@
         <!--        单个链接模块-->
         <div class="link" v-for="links in links" :key="links.tip" @click="openLink(links.url, links.type)">
           <div>
-            <img class="links-cover" :src="ReplaceUrl(`${imgSource}store${links.imgUrl}`)"/>
+            <img class="links-cover" :src="ReplaceUrl(`${imgSource}${links.imgUrl}`)"/>
             <div class="links-data">
               <h3 class="link-name">{{ links.name }}</h3>
               <p class="link-more">{{ links.more }}</p>
@@ -23,6 +23,7 @@
 
 <script>
 import axios from "axios";
+import { AARCH64_SEARCH_IP, X86_SEARCH_IP } from '../apis/https'
 import simpleListComponent from "../components/simpleListComponent";
 
 export default {
@@ -41,14 +42,14 @@ export default {
   methods: {
     getUrl() {
       if (location.hostname == 'localhost' || location.hostname == '127.0.0.1') {
-        this.source = 'https://d.store.deepinos.org.cn/';
-        this.imgSource = 'https://d.store.deepinos.org.cn/';
+        this.source = this.$route.query.arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;;
+        this.imgSource = this.$route.query.arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;;
       }
     },
     getInfo() {
       axios
         .get(
-          `${this.source}/store/home/homelinks.json`
+          `${this.source}/home/homelinks.json`
         )
         //homelinks.json 链接列表
         .then((res) => {
@@ -57,7 +58,7 @@ export default {
 
       axios
         .get(
-          `${this.source}/store/home/homelist.json`
+          `${this.source}/home/homelist.json`
         )
         //homelist.json 列表
         .then((res) => {
@@ -74,6 +75,14 @@ export default {
   mounted() {
     this.getUrl();
     this.getInfo();
-  }
+  },
+  watch: {
+    $route: {
+      handler: function (val, oldVal) {
+        this.getUrl();
+      },
+      deep: true,
+    },
+  },
 }
 </script>

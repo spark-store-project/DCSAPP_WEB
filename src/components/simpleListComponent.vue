@@ -7,7 +7,7 @@
                 v-for="item in list"
                 :key="item.tip"
                 :item="item"
-                :img-src="ReplaceUrl(`${imgSource}/store/${item.Category}/${item.Pkgname}/icon.png`)"
+                :img-src="ReplaceUrl(`${imgSource}/${item.Category}/${item.Pkgname}/icon.png`)"
                 @click="GotoJson(ReplaceUrl(item.Pkgname), item.Category)" />
         </div>
         <button class="button" @click="ShowAll">{{ showingAll ? '收起' : '查看全部' }}</button>
@@ -17,6 +17,7 @@
 <script>
 import axios from "axios";
 import PkgItem from "./PkgItem.vue";
+import { AARCH64_SEARCH_IP, X86_SEARCH_IP } from '../apis/https'
 
 export default {
     components: {PkgItem},
@@ -51,10 +52,10 @@ export default {
     },
     methods: {
         getUrl() {
-            if (location.hostname == 'localhost' || location.hostname == '127.0.0.1') {
-                this.source = 'https://d.store.deepinos.org.cn/';
-                this.imgSource = 'https://d.store.deepinos.org.cn/';
-            }
+        if (location.hostname == 'localhost' || location.hostname == '127.0.0.1') {
+            this.source = this.$route.query.arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;;
+            this.imgSource = this.$route.query.arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;;
+        }
         },
         getInfo() {
             let jsonUrl
@@ -62,7 +63,7 @@ export default {
             {
                 jsonUrl = this.jsonUrl
             }else{
-                jsonUrl = `${this.source}/store` + this.jsonUrl
+                jsonUrl = `${this.source}` + this.jsonUrl
             }
 
             axios
@@ -76,12 +77,12 @@ export default {
         },
         GotoJson(pkgn,category) {
             console.log(
-                `${this.source}/store/${category}/${pkgn}/app.json`
+                `${this.source}/${category}/${pkgn}/app.json`
                 //app.json 软件的详细信息
             );
             window.open(
                 //pkgn 在仓库中的包名
-                `${this.source}/store/${category}/${pkgn}/app.json`,
+                `${this.source}/${category}/${pkgn}/app.json`,
                 "_self",
                 ""
             );
