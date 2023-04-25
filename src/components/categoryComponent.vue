@@ -33,8 +33,8 @@ export default {
         return {
             list: [],
             downloadContent: "DOWNLOAD",
-            source: location.protocol + '//' + location.host + '/',
-            imgSource: location.protocol + '//' + location.host + '/',
+            source: location.protocol + '/' + this.$route.query.arch === 'aarch64' ? 'aarch64-store' : 'store' + location.host + '/',
+            imgSource: location.protocol + '/' + this.$route.query.arch === 'aarch64' ? 'aarch64-store' : 'store' + location.host + '/',
         };
     },
     methods: {
