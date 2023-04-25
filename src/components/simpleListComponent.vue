@@ -51,10 +51,13 @@ export default {
         }
     },
     methods: {
-        getUrl() {
-            this.source = this.$route.query.arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;
-            this.imgSource = this.$route.query.arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;
+getUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const arch = urlParams.get('arch');
+            this.source = arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;
+            this.imgSource = arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;
         },
+
         getInfo() {
             let jsonUrl
             if(this.jsonUrl.includes('http'))

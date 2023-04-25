@@ -14,5 +14,6 @@ export const appListUrls = {
     video: "/video/applist.json"
   };
 
-export const AARCH64_SEARCH_IP = 'https://d.store.deepinos.org.cn/aarch64-store'
-export const X86_SEARCH_IP = 'https://d.store.deepinos.org.cn/store'
+export const AARCH64_SEARCH_IP = `${window.location.origin}/aarch64-store`;
+export const X86_SEARCH_IP = `${window.location.origin}/store`;
+
