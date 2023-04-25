@@ -12,7 +12,7 @@ export const searchApps = async (keyword, arch = '') => {
       .then((response) => {
         const data = response.data;
         const filteredData = data.filter((item) =>
-          item.Name.toLowerCase().includes(keyword.toLowerCase()));
+          item.Name.toLowerCase().includes(keyword.toLowerCase()) || item.Pkgname.toLowerCase().includes(keyword.toLowerCase()));
         
           // 如果有符合条件的结果，将当前请求的类型添加到typeList中
           if (filteredData.length > 0) {
@@ -32,7 +32,11 @@ export const searchApps = async (keyword, arch = '') => {
     })
   );
   const allData = await Promise.all(promises).then((result) => result.flat());
-  return allData;
+  return allData.filter((item, index, self) =>
+    index === self.findIndex((t) => (
+      t.Pkgname.toLowerCase() === item.Pkgname.toLowerCase() && t.type === item.type
+    ))
+  );
 } catch (error) {
   console.error(error);
 }
