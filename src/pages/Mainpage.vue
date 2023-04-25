@@ -35,19 +35,14 @@ export default {
     return {
       links: [],
       lists: [],
-      source: location.protocol + '//' + location.hostname + '/' + this.$route.query.arch === 'aarch64' ? 'aarch64-store' : 'store',
-      imgSource: location.protocol + '//' + location.hostname + '/' + this.$route.query.arch === 'aarch64' ? 'aarch64-store' : 'store',
+      source: location.protocol + '//' + location.host + '/',
+      imgSource: location.protocol + '//' + location.host + '/',
     };
   },
   methods: {
     getUrl() {
-      if (location.hostname == 'localhost' || location.hostname == '127.0.0.1') {
         this.source = this.$route.query.arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;
         this.imgSource = this.$route.query.arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;
-      } else {
-        this.source = `${location.protocol}//${location.hostname}/${(this.$route.query.arch === 'aarch64') ? 'aarch64-store' : 'store'}`;
-        this.imgSource = `${location.protocol}//${location.hostname}/${(this.$route.query.arch === 'aarch64') ? 'aarch64-store' : 'store'}`;
-      }
     },
     getInfo() {
       axios
@@ -72,7 +67,7 @@ export default {
       window.open(url, type, "")
     },
     ReplaceUrl(icon) {
-      return icon.replace(/\+/g,'%2B')
+            return icon.replace(/\+/g,'%2B')
     }
   },
   mounted() {
@@ -86,6 +81,6 @@ export default {
       },
       deep: true,
     },
-  }
+  },
 }
 </script>
