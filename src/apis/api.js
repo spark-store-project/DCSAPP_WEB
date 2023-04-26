@@ -32,11 +32,7 @@ export const searchApps = async (keyword, arch = '') => {
     })
   );
   const allData = await Promise.all(promises).then((result) => result.flat());
-  return allData.filter((item, index, self) =>
-    index === self.findIndex((t) => (
-      t.Pkgname.toLowerCase() === item.Pkgname.toLowerCase() && t.type === item.type
-    ))
-  );
+  return allData;
 } catch (error) {
   console.error(error);
 }
