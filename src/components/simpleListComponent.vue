@@ -51,7 +51,7 @@ export default {
         }
     },
     methods: {
-getUrl() {
+        getUrl() {
             this.source = this.$route.query.arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;
             this.imgSource = this.$route.query.arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;
         },
@@ -75,6 +75,7 @@ getUrl() {
                 });
         },
         GotoJson(pkgn,category) {
+            this.getUrl();
             console.log(
                 `${this.source}/${category}/${pkgn}/app.json`
                 //app.json 软件的详细信息
