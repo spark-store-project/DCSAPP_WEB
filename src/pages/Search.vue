@@ -30,6 +30,7 @@
 <script>
 import { searchApps, typeList } from '@/apis/api'
 import PkgItem from "../components/PkgItem.vue";
+import Fireworks from 'fireworks';
 
 export default {
   name: "Search",
@@ -67,9 +68,17 @@ export default {
       } else {
         return this.list.filter(item => item.type === this.activeCategory);
       }
-    },
+    }
   },
   methods: {
+    async playFireworksAnimation() {
+      // 创建一个 Fireworks 实例，指定容器元素
+      const container = document.body;
+      const fireworks = new Fireworks(container);
+
+      // 开始烟花效果
+      await fireworks.start();
+    },
     GotoJson(icon) {
       let appUrl = icon.replace('icon.png', 'app.json')
       console.log(appUrl);
@@ -92,6 +101,10 @@ export default {
           this.isEmpty = true;
         } else {
           this.isEmpty = false;
+        }
+        if(this.$route.query.keywords.includes("星火"))
+        {
+          this.playFireworksAnimation();
         }
       }
     },
