@@ -1,39 +1,45 @@
 import axios from 'axios';
 import { AARCH64_SEARCH_IP, X86_SEARCH_IP, appListUrls } from './https'
 
-export const typeList=[]
+export var typeList=[];
 
-export const searchApps = async (keyword, arch = '') => {
+export async function searchApps(keyword, arch = '') {
   try {
     typeList.length = 0;
     typeList.push("all");
-    const url = arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;
-    const promises = Object.entries(appListUrls).map(([key, value]) => axios.get(url+value)
-      .then((response) => {
-        const data = response.data;
-        const filteredData = data.filter((item) =>
-          item.Name.toLowerCase().includes(keyword.toLowerCase()) || item.Pkgname.toLowerCase().includes(keyword.toLowerCase()));
-        
+    var url = arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;
+    var promises = Object.entries(appListUrls).map(function([key, value]) {
+      return axios.get(url+value)
+        .then(function(response) {
+          var data = response.data;
+          var filteredData = data.filter(function(item) {
+            return item.Name.toLowerCase().includes(keyword.toLowerCase()) || item.Pkgname.toLowerCase().includes(keyword.toLowerCase());
+          });
+          
           // 如果有符合条件的结果，将当前请求的类型添加到typeList中
           if (filteredData.length > 0) {
             typeList.push(key);
           }
 
-        return filteredData.map((item) => ({
-          ...item,
-          type: key,
-          jsonurl: `${url}/${key}/${item.Pkgname}/app.json`,
-          iconurl: `${url}/${key}/${item.Pkgname}/icon.png`
-      }));
-    })
-    .catch((error) => {
-      console.error(error);
-      return [];
-    })
-  );
-  const allData = await Promise.all(promises).then((result) => result.flat());
-  return allData;
-} catch (error) {
-  console.error(error);
-}
+          return filteredData.map(function(item) {
+            return {
+              ...item,
+              type: key,
+              jsonurl: `${url}/${key}/${item.Pkgname}/app.json`,
+              iconurl: `${url}/${key}/${item.Pkgname}/icon.png`
+            };
+          });
+        })
+        .catch(function(error) {
+          console.error(error);
+          return [];
+        });
+    });
+
+    const allData = [].concat.apply([], await Promise.all(promises));
+    return allData;
+
+  } catch (error) {
+    console.error(error);
+  }
 };
