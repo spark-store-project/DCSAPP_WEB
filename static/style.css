@@ -84,7 +84,7 @@ a {
   display: flex;
   justify-content: center;
   padding: 10px 0;
-  background-color: #fff;
+  background-color: var(--item-borderColor);
   z-index: 999;
   margin-bottom: 20px;
 }
@@ -96,7 +96,7 @@ a {
 .category-selector button {
   border: none;
   background-color: transparent;
-  color: #333;
+  color: var(--title-color);
   font-size: 16px;
   font-weight: bold;
   margin: 0 10px;
