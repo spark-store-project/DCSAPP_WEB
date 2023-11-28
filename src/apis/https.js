@@ -14,7 +14,7 @@ export const appListUrls = {
     video: "/video/applist.json"
   };
 
-export const AARCH64_SEARCH_IP = window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1') ? 'https://img-d.store.deepinos.org.cn/aarch64-store' : `${window.location.origin}/aarch64-store`;
-export const X86_SEARCH_IP = window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1') ? 'https://img-d.store.deepinos.org.cn/store' : `${window.location.origin}/store`;
+export const AARCH64_SEARCH_IP = window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1') ? 'https://d.store.deepinos.org.cn/aarch64-store' : `${window.location.origin}/aarch64-store`;
+export const X86_SEARCH_IP = window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1') ? 'https://d.store.deepinos.org.cn/store' : `${window.location.origin}/store`;
 
 
