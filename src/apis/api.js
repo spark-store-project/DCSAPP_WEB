@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AARCH64_SEARCH_IP, X86_SEARCH_IP, appListUrls } from './https'
+import { IMG_AARCH64_SEARCH_IP, IMG_X86_SEARCH_IP, AARCH64_SEARCH_IP, X86_SEARCH_IP, appListUrls } from './https'
 
 export var typeList=[];
 
@@ -8,6 +8,7 @@ export async function searchApps(keyword, arch = '') {
     typeList.length = 0;
     typeList.push("all");
     var url = arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;
+    var img_url = arch === 'aarch64' ? IMG_AARCH64_SEARCH_IP : IMG_X86_SEARCH_IP;
     var promises = Object.entries(appListUrls).map(function([key, value]) {
       return axios.get(url+value)
         .then(function(response) {
@@ -26,7 +27,7 @@ export async function searchApps(keyword, arch = '') {
               ...item,
               type: key,
               jsonurl: `${url}/${key}/${item.Pkgname}/app.json`,
-              iconurl: `${url}/${key}/${item.Pkgname}/icon.png`
+              iconurl: `${img_url}/${key}/${item.Pkgname}/icon.png`
             };
           });
         })
