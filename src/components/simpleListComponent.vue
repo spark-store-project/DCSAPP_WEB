@@ -29,7 +29,7 @@ export default {
             downloadContent: "DOWNLOAD",
             source: location.protocol + '//' + location.host + '/',
             //imgSource: location.protocol + '//' + location.host + '/',
-            imgSource: location.protocol + '//' + img-d.store.deepinos.org.cn + '/',
+            imgSource: location.protocol + '//' + 'img-d.store.deepinos.org.cn' + '/',
         };
     },
     computed: {
