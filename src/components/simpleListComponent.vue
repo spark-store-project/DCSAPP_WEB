@@ -17,7 +17,7 @@
 <script>
 import axios from "axios";
 import PkgItem from "./PkgItem.vue";
-import { AARCH64_SEARCH_IP, X86_SEARCH_IP } from '../apis/https'
+import { IMG_AARCH64_SEARCH_IP, IMG_X86_SEARCH_IP, AARCH64_SEARCH_IP, X86_SEARCH_IP } from '../apis/https'
 
 export default {
     components: {PkgItem},
@@ -54,7 +54,7 @@ export default {
     methods: {
         getUrl() {
             this.source = this.$route.query.arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;
-            this.imgSource = this.$route.query.arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;
+            this.imgSource = this.$route.query.arch === 'aarch64' ? IMG_AARCH64_SEARCH_IP : IMG_X86_SEARCH_IP;
         },
 
         getInfo() {
