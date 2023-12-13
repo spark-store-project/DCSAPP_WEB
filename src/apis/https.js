@@ -17,6 +17,6 @@ export const appListUrls = {
 export const AARCH64_SEARCH_IP = window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1') ? 'https://d.store.deepinos.org.cn/aarch64-store' : `${window.location.origin}/aarch64-store`;
 export const X86_SEARCH_IP = window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1') ? 'https://d.store.deepinos.org.cn/store' : `${window.location.origin}/store`;
 
-export const IMG_AARCH64_SEARCH_IP = 'https://img-d.store.deepinos.org.cn/aarch64-store';
-export const IMG_X86_SEARCH_IP = 'https://img-d.store.deepinos.org.cn/store';
+export const IMG_AARCH64_SEARCH_IP = 'http://120.132.17.134:3000/better-dde/png-accelerate/raw/branch/master/aarch64-store';
+export const IMG_X86_SEARCH_IP = 'http://120.132.17.134:3000/better-dde/png-accelerate/raw/branch/master/store/';
 
