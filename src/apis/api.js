@@ -7,8 +7,22 @@ export async function searchApps(keyword, arch = '') {
   try {
     typeList.length = 0;
     typeList.push("all");
-    var url = arch === 'aarch64' ? AARCH64_SEARCH_IP : X86_SEARCH_IP;
-    var img_url = arch === 'aarch64' ? IMG_AARCH64_SEARCH_IP : IMG_X86_SEARCH_IP;
+var url;
+      var img_url;
+      switch (this.$route.query.arch) {
+        case 'aarch64':
+          url = AARCH64_SEARCH_IP;
+          img_url = IMG_AARCH64_SEARCH_IP;
+          break;
+        case 'loong64':
+          url = LOONG64_SEARCH_IP;
+          img_url = IMG_LOONG64_SEARCH_IP;
+          break;
+        default:
+          url = X86_SEARCH_IP;
+          img_url = IMG_X86_SEARCH_IP;
+          break;
+      }
     var promises = Object.entries(appListUrls).map(function([key, value]) {
       return axios.get(url+value)
         .then(function(response) {
