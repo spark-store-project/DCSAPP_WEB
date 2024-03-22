@@ -9,7 +9,7 @@ export async function searchApps(keyword, arch = '') {
     typeList.push("all");
 var url;
       var img_url;
-      switch (this.$route.query.arch) {
+      switch (arch) {
         case 'aarch64':
           url = AARCH64_SEARCH_IP;
           img_url = IMG_AARCH64_SEARCH_IP;
