@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { IMG_AARCH64_SEARCH_IP, IMG_X86_SEARCH_IP, AARCH64_SEARCH_IP, X86_SEARCH_IP, appListUrls } from './https'
+import { IMG_AARCH64_SEARCH_IP, IMG_X86_SEARCH_IP, IMG_LOONG64_SEARCH_IP, AARCH64_SEARCH_IP, X86_SEARCH_IP, LOONG64_SEARCH_IP } from './https'
 
 export var typeList=[];
 
