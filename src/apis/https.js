@@ -18,7 +18,8 @@ export const AARCH64_SEARCH_IP = window.location.origin.includes('localhost') ||
 export const LOONG64_SEARCH_IP = window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1') ? 'https://d.store.deepinos.org.cn/loong64-store' : `${window.location.origin}/loong64-store`;
 export const X86_SEARCH_IP = window.location.origin.includes('localhost') || window.location.origin.includes('127.0.0.1') ? 'https://d.store.deepinos.org.cn/store' : `${window.location.origin}/store`;
 
-export const IMG_AARCH64_SEARCH_IP = `${window.location.origin}/aarch64-store`;
-export const IMG_LOONG64_SEARCH_IP = `${window.location.origin}/loong64-store`;
-export const IMG_X86_SEARCH_IP = `${window.location.origin}/store`;
+
+export const IMG_AARCH64_SEARCH_IP = 'https://spk-json.spark-app.store/aarch64-store';
+export const IMG_LOONG64_SEARCH_IP = 'https://spk-json.spark-app.store/loong64-store';
+export const IMG_X86_SEARCH_IP = 'https://spk-json.spark-app.store/store/';
 
